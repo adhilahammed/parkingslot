@@ -20,7 +20,9 @@ const Parking = () => {
   const { data, refetch } = useQuery({
     queryKey: ["slot"],
     queryFn: async () => {
-      const response = await axios.get(`http://localhost:3000/slot/getSlotes`);
+      const response = await axios.get(
+        `https://${import.meta.env.VITE_API}/slot/getSlotes`
+      );
       return response.data;
     },
   });

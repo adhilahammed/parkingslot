@@ -7,7 +7,7 @@ const Header = () => {
   const navigate = useNavigate();
   const logoutAction = () => {
     logoutSession();
-    navigate("/login");
+    navigate("/");
   };
   return (
     <div className="bg-blue-800 flex justify-between py-2 px-3 w-full items-center">

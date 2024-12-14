@@ -18,7 +18,7 @@ export const Login = () => {
 
   const createUser = async (newUser) => {
     const response = await axios.post(
-      `http://localhost:3000/user/login`,
+      `https://${import.meta.env.VITE_API}/user/login`,
       newUser
     );
     return response.data;
@@ -35,7 +35,7 @@ export const Login = () => {
         userId: data.userId,
       });
       toast.success("login successful");
-      navigate("/");
+      navigate("/home");
     },
     onError: (error) => {
       toast.error("login failed");

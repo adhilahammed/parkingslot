@@ -16,7 +16,7 @@ const Confirmation = ({ slotNumber, setSelectedSlot, refetch }) => {
     queryKey: [slotNumber],
     queryFn: async () => {
       const response = await axios.get(
-        `http://localhost:3000/slot/getBookedSlot/${slotNumber}`,
+        `https://${import.meta.env.VITE_API}/slot/getBookedSlot/${slotNumber}`,
         {
           headers: {
             Authorization: `Bearer ${userSession.token}`,
@@ -31,12 +31,15 @@ const Confirmation = ({ slotNumber, setSelectedSlot, refetch }) => {
   const { data: slote } = useQuery({
     queryKey: [slotNumber, "dd"],
     queryFn: async () => {
-      const response = await axios.get(`http://localhost:3000/slot/getSlotes`, {
-        headers: {
-          Authorization: `Bearer ${userSession.token}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.get(
+        `https://${import.meta.env.VITE_API}/slot/getSlotes`,
+        {
+          headers: {
+            Authorization: `Bearer ${userSession.token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       return response.data;
     },
   });
@@ -75,13 +78,16 @@ const Confirmation = ({ slotNumber, setSelectedSlot, refetch }) => {
   }, [data]);
 
   const Book = async (book) => {
-    const response = await axios.post(`http://localhost:3000/slot/book`, book);
+    const response = await axios.post(
+      `https://${import.meta.env.VITE_API}/slot/book`,
+      book
+    );
     return response.data;
   };
 
   const Exit = async (exit) => {
     const response = await axios.post(
-      `http://localhost:3000/slot/cancel`,
+      `https://${import.meta.env.VITE_API}/slot/cancel`,
       exit
     );
     return response.data;
@@ -158,6 +164,7 @@ const Confirmation = ({ slotNumber, setSelectedSlot, refetch }) => {
                       type="text"
                       name="VehicleNumber"
                       className="w-full p-2 border rounded-md"
+                      disabled={data?.slotNumber}
                     />
                   </>
                 </div>

@@ -42,7 +42,7 @@ export const Signup = () => {
   const mutation = useMutation(
     async (newUser) => {
       const response = await axios.post(
-        `http://localhost:3000/user/signup`,
+        `https://${import.meta.env.VITE_API}/user/signup`,
         newUser
       );
       return response.data;
@@ -53,7 +53,7 @@ export const Signup = () => {
         toast.success("Signup Successful");
         reset(); // Reset the form on success
 
-        navigate("/login");
+        navigate("/");
       },
       onError: (error) => {
         console.error("Error creating user:", error);
@@ -195,7 +195,7 @@ export const Signup = () => {
               cursor: "pointer",
             }}
             onClick={() => {
-              navigate("/login");
+              navigate("/");
             }}
             className="text-blue-800 hover:underline"
           >
